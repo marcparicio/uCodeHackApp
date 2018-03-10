@@ -1,7 +1,8 @@
 package com.paricio.ucode2018app.Recyclerview;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,11 @@ import java.util.List;
 
 public class ShoesAdapter extends RecyclerView.Adapter<ShoesViewHolder> {
 
-    private List<String> shoes;
+    private List<Bitmap> shoes;
     private final ShoeItemListener listener;
 
 
-    public ShoesAdapter(List<String> shoes, ShoeItemListener listener) {
+    public ShoesAdapter(List<Bitmap> shoes, ShoeItemListener listener) {
         this.shoes = shoes;
         this.listener = listener;
         notifyDataSetChanged();
@@ -31,7 +32,7 @@ public class ShoesAdapter extends RecyclerView.Adapter<ShoesViewHolder> {
 
     @Override
     public void onBindViewHolder(ShoesViewHolder holder, int position) {
-        String shoe = shoes.get(position);
+        Bitmap shoe = shoes.get(position);
         holder.bind(shoe);
     }
 
@@ -40,8 +41,12 @@ public class ShoesAdapter extends RecyclerView.Adapter<ShoesViewHolder> {
         return shoes.size();
     }
 
-    public void setShoesList(List<String> shoes) {
+    public void updateList(List<Bitmap> shoes) {
         this.shoes = shoes;
         notifyDataSetChanged();
+    }
+
+    public void deleteItemAtPosition(int position) {
+        shoes.remove(position);
     }
 }
